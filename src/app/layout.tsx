@@ -23,11 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    <html lang="fa" dir="rtl">
+      <body 
+      dir="rtl"
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  overflow-hidden p-4 bg-black`  }
       >
-        {children}
+      <div className=" overflow-hidden rounded-3xl h-dvh bg-background">  {children}</div>
       </body>
     </html>
   );
