@@ -26,9 +26,9 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <body 
       dir="rtl"
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  overflow-hidden p-4 bg-black`  }
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-dvh  p-4 bg-black`  }
       >
-      <div className=" overflow-hidden rounded-3xl h-dvh bg-background">  {children}</div>
+      <div className=" overflow-hidden rounded-3xl  bg-background">  {children}</div>
       </body>
     </html>
   );
