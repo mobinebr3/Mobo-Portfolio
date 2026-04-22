@@ -1,124 +1,137 @@
 "use client";
 
-import React, { forwardRef, useRef } from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { AnimatedBeam } from "@/components/ui/animated-beam";
-import { Eye, CloudLightning, Rocket, Code2, User } from "lucide-react";
+import React, { ReactNode } from "react";
+import {
+  Code2,
+  Cpu,
+  Globe,
+  Layers,
+  Layout,
+  Server,
+  Database,
+  Terminal,
+  Figma,
+  Framer,
+  Github,
+  Sparkles,
+  Wand2,
+  Box,
+  Zap,
+  MonitorSmartphone,
+  BatteryFullIcon,
+} from "lucide-react";
+import { motion, } from "framer-motion";
 
-const Circle = forwardRef<
-  HTMLDivElement,
-  { className?: string; children?: React.ReactNode; title?: string }
->(({ className, children, title }, ref) => (
-  <motion.div
-    whileHover={{ scale: 1.1, rotate: 5 }}
-    ref={ref}
-    className={cn(
-      "z-10 flex h-16 w-16 items-center justify-center rounded-2xl border-2 bg-white/80 p-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md md:h-24 md:w-24 md:rounded-full",
-      className
-    )}
-  >
-    {children}
-    {title && (
-      <span className="absolute -bottom-8 hidden w-max text-xs font-medium text-slate-500 md:block">
-        {title}
-      </span>
-    )}
-  </motion.div>
-));
-Circle.displayName = "Circle";
+import { BentoCard as Card } from "../ui/bento-grid";
 
-export default function MySkills() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const centerRef = useRef<HTMLDivElement>(null);
-  const r1 = useRef<HTMLDivElement>(null);
-  const r2 = useRef<HTMLDivElement>(null);
-  const r3 = useRef<HTMLDivElement>(null);
-  const r4 = useRef<HTMLDivElement>(null);
+import { FrontendVisual } from "./skillGridSections/FrontendVisual";
+import { Marquee3D } from "./skillGridSections/Marquee3Dsections";
+import { BackendVisual } from "./skillGridSections/BackendVisual";
+import { UiUxVisual } from "./skillGridSections/UiUxVisual";
 
-  const skills = [
-    { ref: r1, icon: <Eye className="text-blue-500" />, title: "دقت پیکسلی" },
-    { ref: r2, icon: <CloudLightning className="text-amber-500" />, title: "خلاقیت" },
-    { ref: r3, icon: <Rocket className="text-purple-500" />, title: "سرعت اجرا" },
-    { ref: r4, icon: <Code2 className="text-emerald-500" />, title: "کد تمیز" },
-  ];
 
+
+
+
+
+
+
+const features = [
+  {
+    className:
+      "md:col-span-2 shadow-2xl shadow-blue-500/5 dark:shadow-blue-900/10",
+    name: "معماری فرانت‌اند مدرن",
+    description:
+      "توسعه وب‌اپلیکیشن‌های پیشرفته با Next.js و React. تمرکز روی Performance، سئو تکنیکال (SSR/SSG)، ساختار مقیاس‌پذیر و کدنویسی تمیز با TypeScript.",
+    Icon: Code2,
+    href: "#",
+    cta: "Learn more",
+    background: <FrontendVisual />,
+  },
+  {
+    name: "جادوی انیمیشن و UI/UX",
+    Icon: Wand2,
+    description:
+      "پیاده‌سازی دقیق طرح‌های Figma به کد. خلق انیمیشن‌های نرم و تعاملی با استفاده از Framer Motion، GSAP و Anime.js برای خیره کردن کاربران.",
+    href: "#",
+    cta: "Learn more",
+    className:
+      "md:col-span-1 shadow-2xl shadow-purple-500/5 dark:shadow-purple-900/10",
+    background: <UiUxVisual />,
+  },
+  {
+    className:
+      "md:col-span-1 shadow-2xl shadow-emerald-500/5 dark:shadow-emerald-900/10",
+    name: "توسعه‌دهنده بک‌اند (فول‌استک)",
+    description:
+      "من فقط فرانت‌اند کار نمی‌کنم! تسلط به معماری بک‌اند با Node.js، طراحی دیتابیس، ساخت RESTful API و مدیریت ارتباطات Real-time بین کلاینت و سرور.",
+    Icon: Server,
+    background: <BackendVisual />,
+    href: "#",
+    cta: "Learn more",
+  },
+  {
+    className:
+      "md:col-span-2 shadow-2xl shadow-slate-500/5 dark:shadow-slate-900/10",
+    name: "اکوسیستم و ابزارهای حرفه‌ای",
+    description:
+      "تسلط کامل بر ابزارهای روز دنیا از سیستم‌های ورژن کنترل (Git) و مدیریت پکیج‌ها تا کانتینرسازی (Docker) برای افزایش سرعت توسعه، دیباگینگ و کیفیت نهایی محصول.",
+    Icon: Layers,
+    href: "#",
+    cta: "Learn more",
+    background: <Marquee3D />,
+  },
+];
+
+export default function SkillsBentoGrid() {
   return (
-    <section dir="rtl" className="relative py-24 overflow-hidden bg-slate-50/50">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-
-      <div className="container relative mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-            جعبه ابزار <span className="text-blue-600">من</span>
-          </h2>
-          <p className="mt-4 text-slate-500 max-w-xl mx-auto leading-relaxed">
-            ترکیبی از هنر و منطق برای خلق تجربه‌های دیجیتال منحصر‌به‌فرد.
-          </p>
+    <section
+      className="relative w-full min-h-screen bg-background  py-20 px-4 md:px-8 overflow-hidden "
+      dir="rtl">
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col gap-12">
+        <div className="flex flex-col items-center text-center gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-blue-600 dark:text-blue-400 text-sm font-medium backdrop-blur-md">
+            <Sparkles className="w-4 h-4" />
+            تخصص‌ها و مهارت‌های من
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-600 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 tracking-tight">
+            تسلط کامل از <br className="md:hidden" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400">
+              فرانت‌اند
+            </span>{" "}
+            تا{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400">
+              بک‌اند
+            </span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed font-light">
+            ترکیبی از هنر طراحی UI/UX و مهندسی دقیق نرم‌افزار. خلق تجربه‌های
+            کاربری چشم‌نواز با مدرن‌ترین ابزارها، در کنار توسعه بک‌اندی قدرتمند
+            و مقیاس‌پذیر.
+          </motion.p>
         </div>
-
-        <div
-          ref={containerRef}
-          className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-3xl border bg-white/40 shadow-2xl backdrop-blur-sm"
-        >
-          <div className="flex size-full flex-col max-w-lg items-stretch justify-between gap-10 p-12">
-            <div className="flex flex-row items-center justify-between">
-              <Circle ref={r1} title="دقت پیکسلی">
-                <Eye className="size-6 md:size-8" />
-              </Circle>
-              <Circle ref={r3} title="سرعت بالا">
-                <Rocket className="size-6 md:size-8" />
-              </Circle>
-            </div>
-            
-            <div className="flex flex-row items-center justify-center">
-              <Circle 
-                ref={centerRef} 
-                className="h-24 w-24 md:h-32 md:w-32 border-blue-100 bg-gradient-to-tr from-blue-50 to-white ring-8 ring-blue-50/50"
-              >
-                <div className="flex flex-col items-center">
-                   <User className="size-10 text-blue-600" />
-                   <span className="text-[10px] mt-2 font-bold text-blue-900 hidden md:block">مبین</span>
-                </div>
-              </Circle>
-            </div>
-
-            <div className="flex flex-row items-center justify-between">
-              <Circle ref={r2} title="خلاقیت">
-                <CloudLightning className="size-6 md:size-8" />
-              </Circle>
-              <Circle ref={r4} title="کدنویسی">
-                <Code2 className="size-6 md:size-8" />
-              </Circle>
-            </div>
-          </div>
-
-          {/* Beams */}
-          {skills.map((skill, idx) => (
-            <AnimatedBeam
-              key={idx}
-              containerRef={containerRef}
-              fromRef={skill.ref}
-              toRef={centerRef}
-              curvature={idx % 2 === 0 ? 50 : -50}
-              duration={3 + idx}
-              gradientStartColor={idx % 2 === 0 ? "#3b82f6" : "#8b5cf6"}
-              gradientStopColor={idx % 2 === 0 ? "#60a5fa" : "#a78bfa"}
-            />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.7, ease: "easeOut" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[minmax(320px,auto)]">
+          {features.map((feature, idx) => (
+            <Card key={idx} {...feature} />
           ))}
-        </div>
-        
-        {/* Info Cards - Desktop only for extra flair */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-            {skills.map((s, i) => (
-                <div key={i} className="p-4 rounded-2xl border border-slate-100 bg-white hover:border-blue-200 transition-colors shadow-sm">
-                    <h4 className="font-bold text-slate-800 mb-1">{s.title}</h4>
-                    <p className="text-xs text-slate-500">بهینه‌سازی شده برای بهترین تجربه کاربری.</p>
-                </div>
-            ))}
-        </div>
+        </motion.div>
       </div>
+    
     </section>
   );
 }

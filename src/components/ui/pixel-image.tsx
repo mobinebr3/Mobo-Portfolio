@@ -124,3 +124,4 @@ export const PixelImage = ({
     </div>
   )
 }
+
