@@ -8,7 +8,7 @@ import { PortfolioSection } from "@/components/sections/MyPortofilo";
 import MySkills from "@/components/sections/MySkills";
 import { NavBar } from "@/components/sections/NavBar";
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
+import  { useState } from "react";
 
 function Home() {
   const [loading, setLoading] = useState(true);
