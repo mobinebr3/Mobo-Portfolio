@@ -114,7 +114,7 @@ export default function HomeHero() {
       
       {/* --- Content (adjusted typography & spacing) --- */}
       <div className="relative z-10 w-full max-w-5xl px-6 sm:px-8 md:px-12 lg:px-20">
-        <div className="flex flex-col lg:flex-row-reverse items gap-6 sm:gap-8 lg:gap-10">
+        <div className="flex flex-col max-lg:items-center lg:flex-row-reverse items gap-6 sm:gap-8 lg:gap-10">
           {/* Right: Text column */}
           <div className="w-full lg:-mr-20 z-30 lg:w-2/3 text-center lg:text-right">
             {/* small badge (kept minimal) */}
@@ -175,8 +175,8 @@ export default function HomeHero() {
           </div>
 
           {/* Left: Visual (kept structure, only responsive sizing) */}
-          <div className="w-[220px] sm:w-[260px] lg:-mt-10 md:w-[320px] lg:w-[360px] flex-shrink-0">
-            <div className="relative flex justify-center items-center">
+          <div className="w-[220px] sm:w-[260px] lg:-mt-10 md:w-[320px] lg:w-[360px] max-lg:mx-auto  ">
+            <div className="relative flex justify-center items-center w-full">
               <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[320px] md:h-[320px] animate-[float_6s_ease-in-out_infinite]">
                 {/* <div className="absolute translate-x-1/2 right-1/2 top-1/2 -translate-y-1/2 border-2 rounded-full z-10 size-40 bg-primary/10"></div>
                 <div className="absolute translate-x-1/2 right-1/2 bottom-1/9 translate-y-1/12 border-2 rounded-full z-10 size-10 bg-primary/20"></div>
@@ -234,7 +234,7 @@ export default function HomeHero() {
 
                 <div className="relative inset-0 w-full h-full z-20 overflow-hidden bg-background/50  border-t border-b-[0.4px] -rotate-45 dark:border-gray-800 border-b rounded-full  inset-shadow-[0px_3px_0.5px_0.0002px_rgb(256,256,256,0.1)]  backdrop-blur-[5px]  flex items-center justify-center ">
                   {/* <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:15px_15px] opacity-[0.25]" /> */}
-                  <div className="relative rounded-full z-10 cursor-pointer ">
+                  <div className="relative rounded-full z-10 cursor-pointer  ">
                     {" "}
                     {/* <BorderBeam
                       duration={50}
