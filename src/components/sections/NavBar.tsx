@@ -73,9 +73,12 @@ export function NavBar() {
     <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
       <GlassSurface
         width={350}
-        height={60}
-        blur={2}
-        className=" dark:inset-shadow-2xs  border rounded-4xl! dark:border-0 max-sm:backdrop-blur-[5px]! border-dotted border-gray-400/50 bg-background/50! ">
+        height={65}
+        blur={8}
+   
+    
+    
+        className=" dark:inset-shadow-2xs  border-0! shadow-none rounded-3xl! dark:border-0! outline-0! max-sm:backdrop-blur-[5px]!  border-gray-500/50 bg-background/30! ">
         <Dock
           direction="middle"
           className="gap-2 backdrop-blur-none  border-0 mt-0 bg-transparent">

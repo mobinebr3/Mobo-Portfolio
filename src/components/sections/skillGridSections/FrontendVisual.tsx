@@ -1,117 +1,282 @@
+"use client";
 
-'use client'
-import { motion } from "framer-motion";
-import { Code2, Zap } from "lucide-react";
+import React, { forwardRef, useRef } from "react";
 
-export const FrontendVisual = () => {
-  return (
-    <div className="relative w-full  flex items-center justify-center overflow-hidden h-[400px]">
-      <div className="absolute inset-0 bg-grid-black/[0.04] dark:bg-grid-slate-800/[0.04] bg-[bottom_1px_center]" />
-      <motion.div
-        className="relative z-10 w-[80%] max-w-sm"
-        whileHover={{ scale: 1.05, rotateY: 5, rotateX: 5 }}
-        transition={{ type: "spring", stiffness: 400, damping: 30 }}>
-        <div className="w-full bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 rounded-xl shadow-2xl overflow-hidden">
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/50">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-red-500/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <div className="w-3 h-3 rounded-full bg-green-500/80" />
+import { cn } from "@/lib/utils";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
+import { FaReact } from "react-icons/fa";
+import { FcDocument } from "react-icons/fc";
+
+type NodeProps = {
+  className?: string;
+  children?: React.ReactNode;
+
+  color?: string;
+};
+
+const Node = forwardRef<HTMLDivElement, NodeProps>(
+  ({ className, children, color }, ref) => {
+    return (
+      <div
+        ref={ref}
+        style={
+          {
+            // ایجاد یک سایه ملایم و رنگی متناسب با نود
+            boxShadow: color
+              ? ` inset 1px 1px 0px 0.001px ${color}`
+              : "0.1px -0.5px 0px 0.1px rgba(256,256,256,0.2)",
+          } as React.CSSProperties
+        }
+        className={cn(
+          "z-10 flex size-16 items-center justify-center rounded-full  transition-all duration-300",
+          // استایل پایه: شیشه‌ای مات و سفید
+          " backdrop-blur-xs",
+          // استایل هاور برای جذابیت بیشتر
+          "hover:scale-105 hover:bg-secondary",
+          className,
+        )}>
+        {children}
+      </div>
+    );
+  },
+);
+Node.displayName = "Node";
+
+const CoreWindow = forwardRef<HTMLDivElement, { className?: string }>(
+  ({ className }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          // تقویت Glassmorphism: بلور بیشتر، حاشیه گرادینت
+          "z-20 flex h-40 w-64 max-lg:w-56 items-stretch overflow-hidden rounded-3xl bg-card/50 backdrop-blur-xs border-b inset-shadow-xs inset-shadow-white/20",
+          // حالت لایت (کد قبلی خودت)
+          // "bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,1)_0%,rgba(240,244,255,1)_35%,rgba(215,225,250,1)_100%)]",
+
+          // حالت دارک (افزوده شد) - یک هاله بنفش/اندوگو فوق‌العاده شیک که به مشکی ختم می‌شود
+          // "dark:bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.15)_0%,rgba(15,23,42,1)_50%,rgba(2,6,23,1)_100%)]",
+          // "backdrop-blur-2xl transition-all duration-500 hover:border-sky-300/50 hover:shadow-[0_30px_80px_-10px_rgba(56,189,248,0.25)]",
+          className,
+        )}>
+        {/* نوار سمت چپ (Mac-style) - کمی تیره تر برای تضاد */}
+        <div className="flex w-6 flex-col items-center justify-start gap-1.5 border-l border-border/50 p-4">
+          <span className="size-2.5 rounded-full bg-[#FF5F56] shadow-inner" />
+          <span className="size-2.5 rounded-full bg-[#FFBD2E] shadow-inner" />
+          <span className="size-2.5 rounded-full bg-[#27C93F] shadow-inner" />
+        </div>
+
+        {/* محتوای اصلی - شبیه به یک پنل مدیریتی کوچک یا ادیتور */}
+        <div className="flex flex-1 flex-col justify-between p-5 text-left">
+          <div>
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <div className="text-[10px] font-bold tracking-[0.25em] text-foreground uppercase">
+                  Engine Core
+                </div>
+                <div className="mt-1 max-sm:text-sm text-base font-extrabold tracking-tight text-secondary-foreground">
+                  Frontend Craft
+                </div>
+              </div>
+              <div className="rounded-full bg-sky-600/10 px-3 py-1 text-[10px] font-bold text-sky-700 border border-600/20 shadow-sm">
+                v1.2.0
+              </div>
             </div>
-            <div className="ml-4 px-2 py-0.5 rounded-md bg-slate-200/50 dark:bg-slate-800/50 text-xs text-slate-500 dark:text-slate-400 font-mono flex items-center gap-2 flex-1">
-              <Code2 className="w-3 h-3" /> page.tsx
+
+            {/* المان‌های بصری داخل پنجره (به جای اسکلت بی روح) */}
+            <div className="space-y-2.5">
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-full rounded-full bg-secondary-foreground/10" />
+                <div className="h-1.5 w-16 rounded-full bg-sky-500" />
+              </div>
+              <div className="h-1.5 w-4/5 rounded-full bg-secondary-foreground/10" />
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-10 rounded-full bg-violet-400" />
+                <div className="h-1.5 w-3/5 rounded-full bg-secondary-foreground/10" />
+              </div>
             </div>
           </div>
-          <div
-            className="p-4 font-mono text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 bg-white dark:bg-slate-950"
-            dir="ltr">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="overflow-hidden whitespace-nowrap">
-              <span className="text-pink-600 dark:text-pink-400">import</span>{" "}
-              <span className="text-blue-600 dark:text-blue-300">
-                {"{"} useState {"}"}
-              </span>{" "}
-              <span className="text-pink-600 dark:text-pink-400">from</span>{" "}
-              <span className="text-green-600 dark:text-green-300">
-                'react'
-              </span>
-              ;
-            </motion.div>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="overflow-hidden whitespace-nowrap">
-              <span className="text-pink-600 dark:text-pink-400">
-                export default function
-              </span>{" "}
-              <span className="text-yellow-600 dark:text-yellow-300">App</span>
-              () {"{"}
-            </motion.div>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="overflow-hidden whitespace-nowrap pl-4 text-slate-400 dark:text-slate-500">
-              // Super fast rendering
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="pl-4">
-              <span className="text-pink-600 dark:text-pink-400">return</span> ({" "}
-              <br />
-              &nbsp;&nbsp;
-              <span className="text-blue-600 dark:text-blue-400">{"<"}</span>
-              <span className="text-blue-600 dark:text-blue-300">Layout</span>
-              <span className="text-blue-600 dark:text-blue-400">{">"}</span>
-              <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <span className="text-blue-600 dark:text-blue-400">{"<"}</span>
-              <span className="text-blue-600 dark:text-blue-300">
-                Hero
-              </span>{" "}
-              <span className="text-emerald-600 dark:text-emerald-300">
-                optimized
-              </span>
-              <span className="text-blue-600 dark:text-blue-400">{"/>"}</span>
-              <br />
-              &nbsp;&nbsp;
-              <span className="text-blue-600 dark:text-blue-400">{"</"}</span>
-              <span className="text-blue-600 dark:text-blue-300">Layout</span>
-              <span className="text-blue-600 dark:text-blue-400">{">"}</span>
-            </motion.div>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, delay: 1.5 }}
-              className="overflow-hidden whitespace-nowrap">
-              {"}"}
-            </motion.div>
+
+          {/* دکمه‌های پایینی */}
+          <div className="grid grid-cols-2 gap-2 pt-2">
+            <div className="h-6  rounded-lg bg-slate-600/10 shadow-sm hover:bg-slate-800 cursor-pointer" />
+            <div className="h-6  rounded-lg bg-sky-600/10 border border-sky-600/20" />
           </div>
         </div>
-        <motion.div
-          animate={{ y: [-5, 5, -5] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-4 -top-4 bg-blue-100/50 dark:bg-blue-500/20 backdrop-blur-md border border-blue-200 dark:border-blue-500/30 p-2 rounded-xl text-blue-600 dark:text-blue-300 shadow-xl">
-          <Code2 className="w-6 h-6" />
-        </motion.div>
-        <motion.div
-          animate={{ y: [5, -5, 5] }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="absolute -left-4 -bottom-4 bg-emerald-100/50 dark:bg-emerald-500/20 backdrop-blur-md border border-emerald-200 dark:border-emerald-500/30 p-2 rounded-xl text-emerald-600 dark:text-emerald-300 shadow-xl">
-          <Zap className="w-6 h-6" />
-        </motion.div>
-      </motion.div>
+      </div>
+    );
+  },
+);
+CoreWindow.displayName = "CoreWindow";
+
+export function FrontendVisual({ className }: { className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const uiRef = useRef<HTMLDivElement>(null);
+  const motionRef = useRef<HTMLDivElement>(null);
+  const reactRef = useRef<HTMLDivElement>(null);
+  const a11yRef = useRef<HTMLDivElement>(null);
+  const perfRef = useRef<HTMLDivElement>(null);
+
+  const coreRef = useRef<HTMLDivElement>(null);
+  const userRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative flex h-100 max-sm:h-150 w-full items-center justify-center overflow-hidden bg-background  shadow-white rounded-4xl p-10 max-lg:p-3 max-sm:pb-10",
+        // گرادینت پس‌زمینه عمیق‌تر و جذاب‌تر
+        // حالت لایت (کد قبلی خودت)
+        // "bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,1)_0%,rgba(240,244,255,1)_35%,rgba(215,225,250,1)_100%)]",
+
+        // حالت دارک (افزوده شد) - یک هاله بنفش/اندوگو فوق‌العاده شیک که به مشکی ختم می‌شود
+        // "dark:bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.15)_0%,rgba(15,23,42,1)_50%,rgba(2,6,23,1)_100%)]",
+        className,
+      )}>
+      <div className="relative flex max-sm:flex-col-reverse size-full max-w-6xl items-center justify-between gap-12 max-lg:gap-5">
+        {/* ستون نودهای ورودی */}
+        <div className="flex flex-col  max-sm:flex-row gap-5">
+          <Node
+            ref={uiRef}
+            color="rgba(14, 165, 233, 0.4)"
+            className="size-16 border-sky-200">
+            <div className="flex flex-col items-center text-center">
+              <span className="text-xl">✨</span>
+              <span className="mt-1 text-[11px] font-bold tracking-wide text-sky-600">
+                UI/UX
+              </span>
+            </div>
+          </Node>
+
+          <Node
+            ref={motionRef}
+            color="rgba(168, 85, 247, 0.4)"
+            className="size-16 border-purple-600/20">
+            <div className="flex flex-col items-center text-center">
+              <span className="text-xl">
+                <FcDocument />
+              </span>
+              <span className="mt-1 text-[11px] font-bold tracking-wide text-purple-600">
+                seo
+              </span>
+            </div>
+          </Node>
+
+          <Node
+            ref={reactRef}
+            color="rgba(6, 182, 212, 0.4)"
+            className="size-16 border-cyan-200">
+            <div className="flex flex-col items-center text-center">
+              <span className="text-xl font-bold text-cyan-600">
+                <FaReact />
+              </span>
+              <span className="mt-1 text-[11px] font-bold tracking-wide text-cyan-600">
+                React
+              </span>
+            </div>
+          </Node>
+
+          {/* <Node ref={a11yRef} color="rgba(249, 115, 22, 0.4)" className="size-16 border-orange-200">
+             <div className="flex flex-col items-center text-center">
+              <span className="text-xl">♿</span>
+              <span className="mt-1 text-[11px] font-bold tracking-wide text-orange-950">A11y</span>
+            </div>
+          </Node> */}
+
+          <Node
+            ref={perfRef}
+            color="rgba(34, 197, 94, 0.4)"
+            className="size-16 border-green-200">
+            <div className="flex flex-col items-center text-center">
+              <span className="text-xl">🚀</span>
+              <span className="mt-1 text-[11px] font-bold tracking-wide text-green-600">
+                Perf
+              </span>
+            </div>
+          </Node>
+        </div>
+
+        {/* بخش مرکزی */}
+        <div className="flex flex-1 items-center justify-center">
+          <CoreWindow ref={coreRef} />
+        </div>
+
+        {/* بخش خروجی کاربر */}
+        <div className="flex flex-col items-center justify-center gap-5">
+          <Node
+            ref={userRef}
+            className="size-20 backdrop-blur-xs border-b-[0.2px] ">
+            <div className="flex flex-col items-center leading-none ">
+              <span className="text-3xl">🧑‍💻</span>
+              <span className="mt-2 text-xs font-bold text-secondary-foreground">
+                User
+              </span>
+            </div>
+          </Node>
+
+          {/* متن توضیحات زیر کاربر - شیک تر */}
+          <div className="flex flex-col items-center gap-1.5 max-w-[180px] text-center">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-sm font-semibold tracking-tight text-foreground max-lg:text-xs">
+                Fast & Responsive
+              </span>
+            </div>
+            <div className="text-sm font-medium text-muted-foreground max-lg:text-xs">
+              Polished Interfaces
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* پرتوهای متحرک - با گرادینت و درخشش */}
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={uiRef}
+        toRef={coreRef}
+        className="text-sky-500"
+        gradientStartColor="#38bdf8"
+        gradientStopColor="#0ea5e9"
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={motionRef}
+        toRef={coreRef}
+        className="text-purple-500"
+        gradientStartColor="#c084fc"
+        gradientStopColor="#a855f7"
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={reactRef}
+        toRef={coreRef}
+        className="text-cyan-500"
+        gradientStartColor="#22d3ee"
+        gradientStopColor="#06b6d4"
+      />
+      {/* <AnimatedBeam 
+        containerRef={containerRef} fromRef={a11yRef} toRef={coreRef} 
+        className="text-orange-500" gradientStartColor="#fb923c" gradientStopColor="#f97316"
+      /> */}
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={perfRef}
+        toRef={coreRef}
+        className="text-green-500"
+        gradientStartColor="#4ade80"
+        gradientStopColor="#22c55e"
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={coreRef}
+        toRef={userRef}
+        className="text-blue-600/50"
+        gradientStartColor="#60a5fa"
+        gradientStopColor="#2563eb"
+        curvature={-20} // یک انحنای ملایم معکوس
+        duration={2} // سرعت کمی سریعتر برای خروجی
+      />
+      <div className="w-full absolute bottom-0 h-25 sm:h-30  z-50 bg-linear-to-t from-background to-transparent "></div>
     </div>
   );
-};
+}

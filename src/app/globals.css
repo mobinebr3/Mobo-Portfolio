@@ -206,7 +206,17 @@
       transform: translateY(calc(-100% - var(--gap)));
     }
   }
-}
+
+  --animate-orbit: orbit calc(var(--duration)*1s) linear infinite
+;
+  @keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }}
 
 :root {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -258,8 +268,6 @@
   --popover: var(--white);
   --popover-foreground: var(--gray-900);
 
-
-
   --secondary: var(--gray-50);
   --secondary-foreground: var(--gray-700);
 
@@ -293,14 +301,11 @@
   --card: var(--gray-dark-900);
   --card-foreground: var(--white);
 
-
   --primary: #2b2f83;
   --primary-foreground: oklch(0.98 0.01 260);
 
-
   --popover: var(--gray-dark-900);
   --popover-foreground: var(--white);
-
 
   --secondary: var(--gray-dark-800);
   --secondary-foreground: var(--gray-dark-200);
@@ -395,7 +400,6 @@
   display: none;
 }
 
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -431,7 +435,11 @@
 .animation-delay-2000 {
   animation-delay: 2s;
 }
-
+ @keyframes dash {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
