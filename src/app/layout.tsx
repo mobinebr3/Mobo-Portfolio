@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body dir="rtl" className={` antialiased  bg-black`}>
-        <Suspense fallback={<div>loading..</div>}>
+        <Suspense fallback={<div>loading...</div>}>
           <div className=" "> {children}</div>
         </Suspense>
       </body>

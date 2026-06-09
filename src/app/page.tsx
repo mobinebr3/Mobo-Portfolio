@@ -1,4 +1,5 @@
-"use client";import  { useState } from "react";
+"use client";
+import  { useState } from "react";
 import AboutMe from "@/components/section/AboutMe";
 import Contact from "@/components/section/contactme";
 import Footer from "@/components/section/Footer";
