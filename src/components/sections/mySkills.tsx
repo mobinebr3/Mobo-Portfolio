@@ -73,7 +73,7 @@ const features = [
     cta: "مدیریت و دپلو‌ی پکیج‌های مدرن",
   },
 ];
-export default function MySkills() {
+export  function MySkills() {
   return (
     <section
       className="relative w-full min-h-screen bg-background  py-20 px-4 md:px-8 overflow-hidden "

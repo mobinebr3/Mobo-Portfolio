@@ -1,14 +1,14 @@
-"use client";
+"use client";import  { useState } from "react";
 import AboutMe from "@/components/sections/AboutMe";
 import Contact from "@/components/sections/contactme";
 import Footer from "@/components/sections/Footer";
 import HomeHero from "@/components/sections/heroSection";
 import { Loader } from "@/components/sections/loader";
 import { PortfolioSection } from "@/components/sections/MyPortofilo";
-import MySkills from "@/components/sections/MySkills";
+import {MySkills} from "@/components/sections/MySkills";
 import { NavBar } from "@/components/sections/NavBar";
 import { motion, AnimatePresence } from "framer-motion";
-import  { useState } from "react";
+
 
 function Home() {
   const [loading, setLoading] = useState(true);
