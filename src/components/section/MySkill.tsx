@@ -1,24 +1,16 @@
 "use client";
 
-import React, { ReactNode } from "react";
+
 import {
   Code2,
-  Cpu,
-  Globe,
+
   Layers,
-  Layout,
+
   Server,
-  Database,
-  Terminal,
-  Figma,
-  Framer,
-  Github,
+
   Sparkles,
   Wand2,
-  Box,
-  Zap,
-  MonitorSmartphone,
-  BatteryFullIcon,
+
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -73,7 +65,7 @@ const features = [
     cta: "مدیریت و دپلو‌ی پکیج‌های مدرن",
   },
 ];
-export  function MySkills() {
+export  function MySkill() {
   return (
     <section
       className="relative w-full min-h-screen bg-background  py-20 px-4 md:px-8 overflow-hidden "

@@ -1,13 +1,14 @@
 "use client";import  { useState } from "react";
-import AboutMe from "@/components/sections/AboutMe";
-import Contact from "@/components/sections/contactme";
-import Footer from "@/components/sections/Footer";
-import HomeHero from "@/components/sections/heroSection";
-import { Loader } from "@/components/sections/loader";
-import { PortfolioSection } from "@/components/sections/MyPortofilo";
-import {MySkills} from "@/components/sections/MySkills";
-import { NavBar } from "@/components/sections/NavBar";
+import AboutMe from "@/components/section/AboutMe";
+import Contact from "@/components/section/contactme";
+import Footer from "@/components/section/Footer";
+import HomeHero from "@/components/section/heroSection";
+import { Loader } from "@/components/section/loader";
+import { PortfolioSection } from "@/components/section/MyPortofilo";
+
+import { NavBar } from "@/components/section/NavBar";
 import { motion, AnimatePresence } from "framer-motion";
+import { MySkill } from "@/components/section/MySkill";
 
 
 function Home() {
@@ -39,7 +40,7 @@ function Home() {
                 className="w-full">
                 <HomeHero />
                 <AboutMe />
-                <MySkills />
+                <MySkill />
                 <PortfolioSection />
                 <Contact />
                 <Footer />
