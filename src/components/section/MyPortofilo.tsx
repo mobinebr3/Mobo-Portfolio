@@ -351,7 +351,7 @@ export function PortfolioSection() {
 
             <motion.div
               layoutId={`card-${selected.id}`}
-              className="relative scrollbar-minimal z-10 flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-2xl dark:bg-[#0b0b0b]">
+              className="relative scrollbar-minimal z-10 flex max-h-[90dvh] w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-2xl dark:bg-[#0b0b0b]">
               <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-white/10 sm:px-6">
                 <div className="flex items-center gap-3">
                   <div
