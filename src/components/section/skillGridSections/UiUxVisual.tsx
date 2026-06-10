@@ -25,7 +25,7 @@ export const UiUxVisual = () => {
       />
 
       <div className="relative flex h-90 w-full flex-col items-center justify-center overflow-hidden">
-        <OrbitingCircles radius={120}>
+        <OrbitingCircles radius={120} delay={0}>
           <FigmaIcon />
           <svg
             viewBox="0 0 32 32"
@@ -51,7 +51,7 @@ export const UiUxVisual = () => {
           </svg>
           <GsapLogoCorrect />
         </OrbitingCircles>
-        <OrbitingCircles radius={80} reverse>
+        <OrbitingCircles radius={80} reverse delay={0}>
           <FigmaIcon />
           <Framer className=" text-pink-600" />
           <GsapLogoCorrect />

@@ -28,7 +28,7 @@ const Node = forwardRef<HTMLDivElement, NodeProps>(
           } as React.CSSProperties
         }
         className={cn(
-          "z-10 flex size-16 items-center justify-center rounded-full  transition-all duration-300",
+          "z-10 flex size-16 items-center justify-center rounded-full  transition-color duration-300",
           // استایل پایه: شیشه‌ای مات و سفید
           " backdrop-blur-xs",
           // استایل هاور برای جذابیت بیشتر
@@ -135,7 +135,7 @@ export function FrontendVisual({ className }: { className?: string }) {
       )}>
       <div className="relative flex max-sm:flex-col-reverse size-full max-w-6xl items-center justify-between gap-12 max-lg:gap-5">
         {/* ستون نودهای ورودی */}
-        <div className="flex flex-col  max-sm:flex-row gap-5">
+        <div className="flex sm:flex-col  max-sm:flex-row gap-5">
           <Node
             ref={uiRef}
             color="rgba(14, 165, 233, 0.4)"
@@ -235,7 +235,7 @@ export function FrontendVisual({ className }: { className?: string }) {
         fromRef={uiRef}
         toRef={coreRef}
         className="text-sky-500"
-        gradientStartColor="#38bdf8"
+        gradientStartColor="#38bdf8" 
         gradientStopColor="#0ea5e9"
       />
       <AnimatedBeam
@@ -269,12 +269,11 @@ export function FrontendVisual({ className }: { className?: string }) {
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={coreRef}
-        toRef={userRef}
-        className="text-blue-600/50"
-        gradientStartColor="#60a5fa"
-        gradientStopColor="#2563eb"
-        curvature={-20} // یک انحنای ملایم معکوس
-        duration={2} // سرعت کمی سریعتر برای خروجی
+        toRef={userRef} delay={500}
+        className="text-blue-600"
+        gradientStartColor="#60a5fa" 
+        gradientStopColor="#2563eb" duration={500}
+  
       />
       <div className="w-full absolute bottom-0 h-25 sm:h-30  z-50 bg-linear-to-t from-background to-transparent "></div>
     </div>
