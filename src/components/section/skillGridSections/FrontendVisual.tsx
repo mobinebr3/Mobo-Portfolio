@@ -269,10 +269,10 @@ export function FrontendVisual({ className }: { className?: string }) {
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={coreRef}
-        toRef={userRef} delay={500}
+        toRef={userRef} delay={1}
         className="text-blue-600"
         gradientStartColor="#60a5fa" 
-        gradientStopColor="#2563eb" duration={500}
+        gradientStopColor="#2563eb" duration={10}
   
       />
       <div className="w-full absolute bottom-0 h-25 sm:h-30  z-50 bg-linear-to-t from-background to-transparent "></div>

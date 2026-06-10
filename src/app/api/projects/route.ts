@@ -69,7 +69,7 @@ export async function GET() {
         "تمرکز روی UX و performance",
       ],
       link: "https://ballut.app",
-      coverImage: "/projects/ballut/cover.jpg",
+      coverImage: "/projects/ballut/cover.png",
       images: [
         "/projects/ballut/1.jpg",
         "/projects/ballut/2.jpg",

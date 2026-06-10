@@ -135,12 +135,12 @@ export default function HomeHero() {
               </Highlighter>{" "}
               هستم؛
             </h1>
-            <h1 className="text-md mt-2 sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground leading-snug tracking-tight">
+            <h1 className="text-sm mt-2 sm:text-md md:text-xl lg:text-2xl font-normal text-foreground/90 leading-snug tracking-tight">
               {" "}
-              مهندسِ کوچک{" "}
+           توسعه‌دهنده وب (فرانت‌اند / فول‌استک)
             </h1>
             <div className=" h-0.5 bg-linear-to-r my-6 w-full  from-transparent via-primary/50 to-transparent" />
-            <div className="mt-3 text-xs sm:text-sm md:text-base text-muted-foreground bg-card/60 border-t border-b-[0.1px] px-4 py-2 w-fit rounded-full font-medium max-w-md mx-auto lg:mx-0 leading-relaxed">
+            <div className="mt-3 text-xs sm:text-sm md:text-base text-secondary-foreground bg-card/60 border-t border-b-[0.1px] px-4 py-2 w-fit rounded-full font-medium max-w-md mx-auto lg:mx-0 leading-relaxed">
               در تلاش‌ام تا با خلاقیت،
               <SparklesText
                 sparklesCount={5}
@@ -165,13 +165,13 @@ export default function HomeHero() {
               />
             </div> */}
 
-            <div className="mt-6 flex justify-center lg:justify-start">
+            {/* <div className="mt-6 flex justify-center lg:justify-start">
               <Link
                 href="#portfolio"
                 className="px-7 inset-shadow-2xs shadow-white py-2 bg-primary  text-white rounded-xl z-20 border border-white/20   text-sm font-semibold hover:-translate-y-[2px] transition-transform">
                 مشاهده پروژه‌ها
               </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* Left: Visual (kept structure, only responsive sizing) */}
@@ -232,7 +232,7 @@ export default function HomeHero() {
                 </div> */}
                 <div className=" -top-20  translate-x-1/2 right-1/2 size-3 absolute bg-primary/30 anim left-0 rounded-full "></div>
 
-                <div className="relative inset-0 w-full h-full z-20 overflow-hidden bg-background/50  border-t border-b-[0.4px] -rotate-45 dark:border-gray-800 border-b rounded-full  inset-shadow-[0px_3px_0.5px_0.0002px_rgb(256,256,256,0.1)]  backdrop-blur-[5px]  flex items-center justify-center ">
+                <div className="relative inset-0 w-full h-full z-20 overflow-hidden bg-background/50  border-b-[0.4px] -rotate-45 dark:border-gray-800  rounded-full   inset-shadow-2xs dark:inset-shadow-white/10 backdrop-blur-[5px]  flex items-center justify-center ">
                   {/* <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:15px_15px] opacity-[0.25]" /> */}
                   <div className="relative rounded-full z-10 cursor-pointer  ">
                     {" "}

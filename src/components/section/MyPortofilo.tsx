@@ -80,7 +80,7 @@ const iconMap: Record<string, any> = {
   building: Building2,
 };
 
-export  function PortfolioSection() {
+export function PortfolioSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selected, setSelected] = useState<Project | null>(null);
@@ -111,9 +111,9 @@ export  function PortfolioSection() {
       document.body.style.overflow = "unset";
     }
 
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    // return () => {
+    //   document.body.style.overflow = "unset";
+    // };
   }, [selected]);
 
   useEffect(() => {
@@ -141,8 +141,7 @@ export  function PortfolioSection() {
   return (
     <section
       dir="rtl"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 py-20 px-4 transition-colors duration-500 dark:from-[#040404] dark:via-[#090909] dark:to-[#040404] sm:px-6 lg:px-8"
-    >
+      className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 py-20 px-4 transition-colors duration-500 dark:from-[#040404] dark:via-[#090909] dark:to-[#040404] sm:px-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute right-1/4 top-20 h-[420px] w-[420px] rounded-full bg-violet-500/10 blur-3xl dark:bg-violet-500/10" />
         <div className="absolute bottom-10 left-1/4 h-[360px] w-[360px] rounded-full bg-cyan-500/10 blur-3xl dark:bg-cyan-500/10" />
@@ -154,8 +153,7 @@ export  function PortfolioSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-violet-500/15 bg-violet-500/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-300"
-          >
+            className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-violet-500/15 bg-violet-500/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-300">
             <Sparkles className="h-4 w-4" />
             نمونه‌کارها
           </motion.div>
@@ -164,8 +162,7 @@ export  function PortfolioSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-7xl"
-          >
+            className="text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-7xl">
             پروژه‌هایی که با{" "}
             <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent">
               خلاقیت
@@ -177,14 +174,13 @@ export  function PortfolioSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-slate-600 dark:text-slate-400 sm:text-base"
-          >
+            className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-slate-600 dark:text-slate-400 sm:text-base">
             مجموعه‌ای از پروژه‌های واقعی با تمرکز روی فرانت‌اند، تجربه کاربری،
             سرعت، و پیاده‌سازی تمیز و حرفه‌ای.
           </motion.p>
         </div>
 
-        <div className="mb-8 flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 md:flex-row md:items-center md:justify-between md:p-5">
+        <div className="mb-8 flex flex-col gap-4 rounded-3xl bg-background/50 p-4  backdrop-blur border-t border-b-[0.5px] md:flex-row md:items-center md:justify-between md:p-5">
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => {
               const Icon = cat.icon;
@@ -195,12 +191,11 @@ export  function PortfolioSection() {
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
                   className={[
-                    "inline-flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold transition-all",
+                    "inline-flex items-center gap-2 rounded-2xl border-t border-b-[0.2px] px-4 py-2.5 text-sm font-semibold transition-all",
                     active
                       ? "bg-slate-900 text-white shadow-lg dark:bg-white dark:text-slate-900"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10",
-                  ].join(" ")}
-                >
+                  ].join(" ")}>
                   <Icon className="h-4 w-4" />
                   {cat.label}
                 </button>
@@ -208,7 +203,7 @@ export  function PortfolioSection() {
             })}
           </div>
 
-          <label className="flex w-full max-w-sm items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 md:w-auto">
+          <label className="flex w-full max-w-sm items-center gap-3 rounded-2xl border-l border-t-[0.2px] border-slate-200 bg-slate-50 px-4 py-3 text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 md:w-auto">
             <Search className="h-4 w-4 shrink-0" />
             <input
               value={search}
@@ -238,8 +233,7 @@ export  function PortfolioSection() {
         ) : (
           <motion.div
             layout
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"
-          >
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => {
                 const IconComponent = iconMap[project.icon] || Globe;
@@ -255,14 +249,13 @@ export  function PortfolioSection() {
                     exit={{ opacity: 0, y: 20, scale: 0.98 }}
                     transition={{ duration: 0.35, delay: index * 0.04 }}
                     onClick={() => setSelected(project)}
-                    className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white text-right shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-white/10 dark:bg-white/5"
-                  >
+                    className="group relative overflow-hidden rounded-[2rem]   text-right border-t border-l p-1 pt-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ">
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.08]`}
                     />
 
                     <div className="relative">
-                      <div className="relative h-56 overflow-hidden">
+                      <div className="relative h-56 rounded-4xl overflow-hidden">
                         {hasImage ? (
                           <Image
                             src={project.coverImage as string}
@@ -273,8 +266,7 @@ export  function PortfolioSection() {
                           />
                         ) : (
                           <div
-                            className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${project.gradient}`}
-                          >
+                            className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${project.gradient}`}>
                             <IconComponent className="h-14 w-14 text-white/95" />
                           </div>
                         )}
@@ -292,8 +284,7 @@ export  function PortfolioSection() {
 
                         <div className="absolute bottom-4 right-4">
                           <div
-                            className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg`}
-                          >
+                            className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} shadow-lg`}>
                             <IconComponent className="h-6 w-6 text-white" />
                           </div>
                         </div>
@@ -313,15 +304,13 @@ export  function PortfolioSection() {
                           {project.tech.slice(0, 3).map((tech) => (
                             <span
                               key={tech}
-                              className="rounded-xl bg-slate-100 px-3 py-1.5 text-[11px] font-semibold text-slate-700 dark:bg-white/10 dark:text-slate-300"
-                            >
+                              className="rounded-xl bg-slate-100 px-3 py-1.5 text-[11px] font-semibold text-slate-700 dark:bg-white/10 dark:text-slate-300">
                               {tech}
                             </span>
                           ))}
                           {project.tech.length > 3 && (
                             <span
-                              className={`rounded-xl bg-gradient-to-r ${project.gradient} px-3 py-1.5 text-[11px] font-bold text-white`}
-                            >
+                              className={`rounded-xl bg-gradient-to-r ${project.gradient} px-3 py-1.5 text-[11px] font-bold text-white`}>
                               +{project.tech.length - 3}
                             </span>
                           )}
@@ -362,13 +351,11 @@ export  function PortfolioSection() {
 
             <motion.div
               layoutId={`card-${selected.id}`}
-              className="relative z-10 flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-2xl dark:bg-[#0b0b0b]"
-            >
+              className="relative scrollbar-minimal z-10 flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-2xl dark:bg-[#0b0b0b]">
               <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-white/10 sm:px-6">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br ${selected.gradient}`}
-                  >
+                    className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br ${selected.gradient}`}>
                     {selected.confidential ? (
                       <Lock className="h-5 w-5 text-white" />
                     ) : (
@@ -395,16 +382,14 @@ export  function PortfolioSection() {
 
                 <button
                   onClick={() => setSelected(null)}
-                  className="rounded-full bg-slate-100 p-2.5 text-slate-700 transition-colors hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/15"
-                >
+                  className="rounded-full bg-slate-100 p-2.5 text-slate-700 transition-colors hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/15">
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
               <div className="grid flex-1 grid-cols-1 overflow-y-auto lg:grid-cols-12">
                 <div
-                  className={`lg:col-span-5 bg-gradient-to-br ${selected.gradient} p-5 text-white sm:p-8`}
-                >
+                  className={`lg:col-span-5 bg-gradient-to-br ${selected.gradient} p-5 text-white sm:p-8`}>
                   <div className="space-y-5">
                     <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/10">
                       {selected.coverImage ? (
@@ -443,8 +428,7 @@ export  function PortfolioSection() {
                         {Object.entries(selected.stats).map(([key, value]) => (
                           <div
                             key={key}
-                            className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur"
-                          >
+                            className="rounded-2xl  inset-shadow-2xs border-b border-border/50  dark:inset-shadow-white/20 bg-card/5  p-4 backdrop-blur">
                             <p className="text-[11px] font-bold uppercase tracking-wide text-white/70">
                               {key}
                             </p>
@@ -463,8 +447,7 @@ export  function PortfolioSection() {
                           {selected.highlights.map((item) => (
                             <span
                               key={item}
-                              className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white"
-                            >
+                              className="rounded-full dark:inset-shadow-white/20  inset-shadow-2xs border-b border-border/50 bg-card/5 px-3 py-1.5 text-xs font-semibold text-white">
                               {item}
                             </span>
                           ))}
@@ -497,8 +480,7 @@ export  function PortfolioSection() {
                         {selected.tech.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
-                          >
+                            className="rounded-xl dark:inset-shadow-white/20 inset-shadow-2xs border-b border-border/50 bg-card px-3 py-2 text-sm font-semibold t">
                             {tech}
                           </span>
                         ))}
@@ -515,8 +497,7 @@ export  function PortfolioSection() {
                         {selected.features.map((feature) => (
                           <div
                             key={feature}
-                            className="rounded-2xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
-                          >
+                            className="rounded-2xl  p-4 text-sm font-semibold dark:inset-shadow-white/20 inset-shadow-2xs border-b border-border/50 bg-card">
                             {feature}
                           </div>
                         ))}
@@ -553,8 +534,7 @@ export  function PortfolioSection() {
                                   activeImageIndex === index
                                     ? "border-violet-500 ring-2 ring-violet-500/30"
                                     : "border-slate-200 dark:border-white/10",
-                                ].join(" ")}
-                              >
+                                ].join(" ")}>
                                 <Image
                                   src={img}
                                   alt={`${selected.title} thumb ${index + 1}`}
@@ -587,8 +567,7 @@ export  function PortfolioSection() {
                               href={selected.link}
                               target="_blank"
                               rel="noreferrer"
-                              className={`inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r ${selected.gradient} px-5 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5`}
-                            >
+                              className={`inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r ${selected.gradient} px-5 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5`}>
                               <ExternalLink className="h-4 w-4" />
                               مشاهده خروجی
                             </a>
@@ -599,8 +578,7 @@ export  function PortfolioSection() {
                               href={selected.github}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-slate-900"
-                            >
+                              className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-slate-900">
                               <Github className="h-4 w-4" />
                               سورس کد
                             </a>

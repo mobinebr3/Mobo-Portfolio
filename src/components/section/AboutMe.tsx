@@ -63,7 +63,7 @@ export default function AboutMe() {
             className="relative z-10 w-full max-w-md">
             <div className="">
               <div className="overflow-hidden rounded- pt-4  relative grid place-items-center">
-                <PixelImage src="/myphoto.jpg" grid="4x6" />
+                <PixelImage src="/myphoto.jpg" grid="4x6"   />
               </div>
 
               {/* Badge وضعیت */}
@@ -87,7 +87,6 @@ export default function AboutMe() {
           whileInView="visible"
           viewport={{ once: true }}
           className="lg:col-span-7 order-2 lg:order-2 text-right dir-rtl flex flex-col items-end lg:items-start">
-          <Terminal className="absolute -top-10 -left-10 w-64 h-64 text-slate-900/5 rotate-12 -z-10" />
 
           {/* Badge کوچک */}
 
@@ -119,55 +118,55 @@ export default function AboutMe() {
           </motion.div>
 
           {/* محتوای متن با حفظ تمام کلمات شما */}
-          <div className="space-y-6 text-right w-full">
-            <motion.p
-              variants={itemVariants}
-              className="text-lg md:text-xl text-secondary-foreground leading-8 md:leading-9 font-medium">
-              من یک{" "}
-              <Highlighter
-                action="underline"
-                iterations={5}
-                color="#2b2f83"
-                animationDuration={10000}>
-                توسعه‌دهنده فول استک
-              </Highlighter>{" "}
-              هستم؛ پسری خلاق با ذهنی کنجکاو که همیشه به دنبال یادگیری،
-              تجربه‌کردن و ساختن چیزهای جدید است. برای من برنامه‌نویسی فقط نوشتن
-              کد نیست، بلکه راهی برای تبدیل ایده‌ها به واقعیتی قابل لمس است.
-            </motion.p>
+     <div className="space-y-6 text-right w-full">
+  <motion.p
+    variants={itemVariants}
+    className="text-lg md:text-xl text-secondary-foreground leading-8 md:leading-9 font-medium"
+  >
+    من یک{" "}
+    <Highlighter
+      action="underline"
+      iterations={5}
+      color="#2b2f83"
+      animationDuration={10000}
+    >
+      توسعه‌دهنده فول استک
+    </Highlighter>{" "}
+    هستم؛ فردی خلاق با ذهنی کنجکاو که همیشه به دنبال یادگیری، تجربه‌کردن و ساختن چیزهای جدید است. برای من برنامه‌نویسی فقط نوشتن کد نیست، بلکه راهی برای تبدیل ایده‌ها به واقعیتی قابل لمس است.
+  </motion.p>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              دنیای من جایی است که طراحی و منطق در کنار هم معنا پیدا می‌کنند.
-              جایی که هر تصمیم کوچک می‌تواند تجربه‌ای بزرگ بسازد. من به{" "}
-              <Highlighter
-                action="highlight"
-                iterations={3}
-                color="#2b2f83"
-                animationDuration={50000}>
-                <span className="text-primary-foreground"> جزئیات </span>
-              </Highlighter>{" "}
-              اهمیت می‌دهم، چون باور دارم کیفیت واقعی در تک‌تک پیکسل‌ها شکل
-              می‌گیرد.
-            </motion.p>
+  <motion.p
+    variants={itemVariants}
+    className="text-base md:text-lg text-muted-foreground leading-relaxed"
+  >
+    دنیای من جایی است که طراحی و منطق در کنار هم معنا پیدا می‌کنند. جایی که هر تصمیم کوچک می‌تواند تجربه‌ای بزرگ بسازد. من به{" "}
+    <Highlighter
+      action="highlight"
+      iterations={3}
+      color="#2b2f83"
+      animationDuration={50000}
+    >
+      <span className="text-primary-foreground"> جزئیات </span>
+    </Highlighter>{" "}
+    اهمیت می‌دهم، چون باور دارم کیفیت واقعی در تک‌تک پیکسل‌ها شکل می‌گیرد.
+  </motion.p>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              علاقه‌مند به ساخت رابط‌های کاربری دقیق، سریع و قابل توسعه‌ام.
-              همیشه تلاش می‌کنم کدی بنویسم که خوانا، ساختاریافته و آینده‌دار
-              باشد. رشد برای من یک هدف مقطعی نیست؛ یک مسیر مداوم است که از{" "}
-              <Highlighter
-                action="box"
-                iterations={3}
-                color="#2b2f83"
-                animationDuration={100000}>
-                کنجکاوی
-              </Highlighter>{" "}
-              و اشتیاق به بهتر شدن شروع می‌شود.
-            </motion.p>
-          </div>
+  <motion.p
+    variants={itemVariants}
+    className="text-base md:text-lg text-muted-foreground leading-relaxed"
+  >
+    علاقه‌مند به ساخت رابط‌های کاربری دقیق، سریع و قابل توسعه‌ام. همیشه تلاش می‌کنم کدی بنویسم که خوانا، ساختاریافته و آینده‌دار باشد. رشد برای من یک هدف مقطعی نیست؛ یک مسیر مداوم است که از{" "}
+    <Highlighter
+      action="box"
+      iterations={3}
+      color="#2b2f83"
+      animationDuration={100000}
+    >
+      کنجکاوی
+    </Highlighter>{" "}
+    و اشتیاق به بهتر شدن شروع می‌شود.
+  </motion.p>
+</div>
         </motion.div>
       </div>
     </section>
