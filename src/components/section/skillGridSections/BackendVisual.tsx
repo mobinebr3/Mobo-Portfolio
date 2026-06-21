@@ -107,7 +107,7 @@ const Node = forwardRef<HTMLDivElement, NodeProps>(
         style={
           {
             boxShadow: color
-              ? `inset 1px 1px 0px 0.001px ${color}`
+              ? `inset 0px -0.40px 0px 0.0001px ${color}`
               : "0.1px -0.5px 0px 0.1px rgba(256,256,256,0.2)",
           } as React.CSSProperties
         }
@@ -123,7 +123,6 @@ const Node = forwardRef<HTMLDivElement, NodeProps>(
   },
 );
 Node.displayName = "Node";
-
 
 const useMetrics = (isActive: boolean): SystemMetrics => {
   const [metrics, setMetrics] = useState<SystemMetrics>({
@@ -152,11 +151,31 @@ const useMetrics = (isActive: boolean): SystemMetrics => {
             : prev.requestPath;
 
         return {
-          cpu: Math.max(5, Math.min(48, Math.round(prev.cpu + (Math.random() * 6 - 3)))),
-          ram: parseFloat(Math.max(2.1, Math.min(3.2, prev.ram + (Math.random() * 0.2 - 0.1))).toFixed(1)),
-          iops: Math.max(38, Math.min(52, Math.round(prev.iops + (Math.random() * 4 - 2)))),
-          connections: Math.max(78, Math.min(96, Math.round(prev.connections + (Math.random() * 4 - 2)))),
-          latency: Math.max(8, Math.min(22, Math.round(prev.latency + (Math.random() * 4 - 2)))),
+          cpu: Math.max(
+            5,
+            Math.min(48, Math.round(prev.cpu + (Math.random() * 6 - 3))),
+          ),
+          ram: parseFloat(
+            Math.max(
+              2.1,
+              Math.min(3.2, prev.ram + (Math.random() * 0.2 - 0.1)),
+            ).toFixed(1),
+          ),
+          iops: Math.max(
+            38,
+            Math.min(52, Math.round(prev.iops + (Math.random() * 4 - 2))),
+          ),
+          connections: Math.max(
+            78,
+            Math.min(
+              96,
+              Math.round(prev.connections + (Math.random() * 4 - 2)),
+            ),
+          ),
+          latency: Math.max(
+            8,
+            Math.min(22, Math.round(prev.latency + (Math.random() * 4 - 2))),
+          ),
           requestPath: randomPath,
         };
       });
@@ -171,12 +190,12 @@ const useMetrics = (isActive: boolean): SystemMetrics => {
 // --- کامپوننت اصلی ---
 export const BackendVisual: React.FC = () => {
   const [hasAnimated, setHasAnimated] = useState<boolean>(false);
-  
+
   // رفرنس‌های مربوط به کانتینر و نودها برای وصل کردن AnimatedBeam
   const containerRef = useRef<HTMLDivElement>(null);
   const gatewayRef = useRef<HTMLDivElement>(null);
   const dbRef = useRef<HTMLDivElement>(null);
-  
+
   const isInView = useInView(containerRef, { once: true, margin: "-50px" });
   const metrics = useMetrics(hasAnimated);
 
@@ -192,7 +211,6 @@ export const BackendVisual: React.FC = () => {
       ref={containerRef}
       className="relative w-full h-[520px] md:h-[480px] flex items-center justify-center overflow-hidden rounded-3xl bg-background text-foreground select-none"
       style={{ perspective: "1000px" }}>
-
       {/* هاله‌های نوری مدرن */}
       <div
         className={`absolute -top-12 -left-12 w-56 h-56 bg-cyan-500/10 rounded-full blur-[50px] transition-opacity duration-1000 ${hasAnimated ? "opacity-100" : "opacity-0"} pointer-events-none`}
@@ -203,12 +221,8 @@ export const BackendVisual: React.FC = () => {
 
       {/* بستر اصلی */}
       <div className="relative w-full max-w-md h-full px-6 flex flex-col justify-between items-center py-12 z-10">
-        
         {/* ۱. بخش گیت‌وی (API Gateway) */}
-        <motion.div
-          className="relative w-full flex flex-col items-center"
-          >
-          
+        <motion.div className="relative w-full flex flex-col items-center">
           <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-1 text-left bg-background/40 backdrop-blur-md p-2 rounded-lg border border-border/50 shadow-sm">
             <span className="text-[9px] tracking-wider text-cyan-500 dark:text-cyan-400 uppercase font-mono font-bold flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping opacity-80" />
@@ -223,16 +237,21 @@ export const BackendVisual: React.FC = () => {
           </div>
 
           {/* نود گیت‌وی با افکت جدید */}
-          <Node 
-            ref={gatewayRef} 
-            color="rgba(6, 182, 212, 0.5)" 
-            className="bg-background/60 backdrop-blur-xl border border-cyan-500/30 shadow-[0_8px_32px_rgba(6,182,212,0.15)] group"
-          >
+          <Node
+            ref={gatewayRef}
+            color="rgba(6, 182, 212, 0.5)"
+            className="bg-background/60 backdrop-blur-xl border-t border-cyan-500/50 shadow-[0_8px_32px_rgba(6,182,212,0.15)] group top-10 absolute right-10 ">
             <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent rounded-2xl pointer-events-none" />
             <ServerIcon className="w-7 h-7 text-cyan-500 dark:text-cyan-400 relative z-10 animate-pulse" />
           </Node>
 
-          <div className="mt-3 px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-md">
+          <div
+            className="mt-3 px-4 py-1 rounded-full bg-cyan-500/10  border-cyan-500/60 backdrop-blur-md "
+            style={{
+              boxShadow: 
+                 `inset 0.5px 0.30px 0px 0.01px oklch(71.5% 0.143 215.221) `
+                
+            }}>
             <span className="text-[9px] font-mono font-bold text-cyan-600 dark:text-cyan-300 tracking-widest uppercase">
               API GATEWAY
             </span>
@@ -241,9 +260,7 @@ export const BackendVisual: React.FC = () => {
 
         {/* بخش جریان داده‌ها (فقط پکت‌های شناور) */}
         <div className="absolute inset-x-0 top-[120px] bottom-[120px] flex justify-center pointer-events-none z-0">
-          <motion.div
-            className="absolute left-4 top-1/4 flex items-center gap-2 bg-background/80 backdrop-blur-md px-2 py-1.5 rounded-lg border border-border/60 shadow-md"
-         >
+          <motion.div className="absolute left-4 top-1/4 flex items-center gap-2 bg-background/80 backdrop-blur-md px-2 py-1.5 rounded-lg border border-border/60 shadow-md">
             <ActivityIcon className="text-cyan-500 w-3.5 h-3.5 animate-pulse" />
             <div className="flex flex-col">
               <span className="text-[9px] text-cyan-600 dark:text-cyan-300 font-mono font-bold truncate max-w-[90px]">
@@ -266,7 +283,8 @@ export const BackendVisual: React.FC = () => {
                 200 SUCCESS
               </span>
               <span className="text-[8px] text-muted-foreground font-mono">
-                Latency: <b className="text-foreground/80">{metrics.latency}ms</b>
+                Latency:{" "}
+                <b className="text-foreground/80">{metrics.latency}ms</b>
               </span>
             </div>
           </motion.div>
@@ -278,19 +296,21 @@ export const BackendVisual: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}>
-          
-          <div className="mb-3 px-4 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 backdrop-blur-md">
+          <div className="mb-3 px-4 py-1 rounded-full bg-fuchsia-500/10  backdrop-blur-md"  style={{
+              boxShadow: 
+                 `inset 0.5px 0.30px 0px 0.01px oklch(66.7% 0.295 322.15) `
+                
+            }}>
             <span className="text-[9px] font-mono font-bold text-fuchsia-600 dark:text-fuchsia-300 tracking-widest uppercase">
               POSTGRESQL CLUSTER
             </span>
           </div>
 
           {/* نود دیتابیس با افکت جدید */}
-          <Node 
-            ref={dbRef} 
-            color="rgba(217, 70, 239, 0.5)" 
-            className="bg-background/60 backdrop-blur-xl border border-fuchsia-500/30 shadow-[0_8px_32px_rgba(217,70,239,0.15)] group"
-          >
+          <Node
+            ref={dbRef}
+            color="rgba(217, 70, 239, 0.5)"
+            className="bg-background/60 backdrop-blur-xl border-t border-fuchsia-500/50  absolute bottom-10 left-10 group">
             <div className="absolute inset-0 bg-gradient-to-t from-fuchsia-500/10 to-transparent rounded-2xl pointer-events-none" />
             <DatabaseIcon className="w-7 h-7 text-fuchsia-500 dark:text-fuchsia-400 relative z-10" />
             <span className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-fuchsia-500 rounded-full animate-ping opacity-80" />
@@ -304,7 +324,8 @@ export const BackendVisual: React.FC = () => {
               Conns: <b className="text-foreground">{metrics.connections}</b>
             </span>
             <span className="text-[10px] font-mono text-muted-foreground">
-              Health: <b className="text-emerald-500 dark:text-emerald-400">100%</b>
+              Health:{" "}
+              <b className="text-emerald-500 dark:text-emerald-400">100%</b>
             </span>
           </div>
         </motion.div>
@@ -315,10 +336,21 @@ export const BackendVisual: React.FC = () => {
         containerRef={containerRef}
         fromRef={gatewayRef}
         toRef={dbRef}
+        curvature={180}
         className="text-cyan-500"
-        gradientStartColor="#06b6d4" 
-        gradientStopColor="#d946ef" delay={100}
-  
+        gradientStartColor="#06b6d4"
+        gradientStopColor="#d946ef"
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={gatewayRef}
+        toRef={dbRef}
+        curvature={-320}
+        delay={5}
+        className="text-cyan-500"
+        reverse
+        gradientStartColor="#06b6d4"
+        gradientStopColor="#d946ef"
       />
       {/* <AnimatedBeam
         containerRef={containerRef}
@@ -336,4 +368,3 @@ export const BackendVisual: React.FC = () => {
     </div>
   );
 };
-

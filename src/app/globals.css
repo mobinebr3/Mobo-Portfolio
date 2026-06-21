@@ -438,13 +438,8 @@
   animation-delay: 2s;
 }
 
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
 
-}
-
+.inset
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

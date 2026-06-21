@@ -69,7 +69,7 @@ export default function HomeHero() {
   return (
     <section className="relative w-full h-dvh grid place-items-center  bg-card selection:bg-blue-500/20 selection:text-blue-900">
       {/* Animated grid (same) */}{" "}
-      <div className="w-full absolute inset-0 z-10   h-full">
+      {/* <div className="w-full absolute inset-0 z-10   h-full">
         <SoftAurora
           speed={0.6} 
           scale={1.5}
@@ -86,7 +86,7 @@ export default function HomeHero() {
           // enableMouseInteraction
           mouseInfluence={0}
         />
-      </div>
+      </div> */}
       <div className="w-full h-full absolute inset-0 ">
         <div className="  flex h-[500px] w-full flex-col items-center justify-center ">
           <HexagonPattern
