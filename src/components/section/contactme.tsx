@@ -1,8 +1,7 @@
-// app/sections/Contact.tsx
 "use client";
 
 import { useState } from "react";
-import { Github, Linkedin, Mail, Send, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Mail, Send, ArrowUpRight, CheckCircle2, AlertCircle, X } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,14 +10,49 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // وضعیت مدال برای نشان دادن موفقیت یا خطا
+  const [modal, setModal] = useState({
+    isOpen: false,
+    isSuccess: true,
+    message: "",
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setModal({
+          isOpen: true,
+          isSuccess: true,
+          message: "پیام شما با موفقیت ارسال شد! به زودی با شما تماس می‌گیرم.",
+        });
+        // ریست کردن فرم پس از ارسال موفق
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(data.error || "خطایی در ارسال پیام رخ داد.");
+      }
+    } catch (error: any) {
+      setModal({
+        isOpen: true,
+        isSuccess: false,
+        message: error.message || "مشکلی در اتصال به سرور پیش آمده است. لطفاً دوباره تلاش کنید.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -95,11 +129,12 @@ export default function Contact() {
                     type="text"
                     id="name"
                     required
+                    disabled={isSubmitting}
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-background border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 hover:border-border"
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 hover:border-border disabled:opacity-60 disabled:cursor-not-allowed"
                     placeholder="نام و نام خانوادگی"
                   />
                 </div>
@@ -114,11 +149,12 @@ export default function Contact() {
                     type="email"
                     id="email"
                     required
+                    disabled={isSubmitting}
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-background border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 hover:border-border"
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 hover:border-border disabled:opacity-60 disabled:cursor-not-allowed"
                     placeholder="your@email.com"
                     dir="ltr"
                   />
@@ -134,12 +170,13 @@ export default function Contact() {
                 <textarea
                   id="message"
                   required
+                  disabled={isSubmitting}
                   rows={5}
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-background border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 hover:border-border resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-background border border-border/60 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 hover:border-border resize-none disabled:opacity-60 disabled:cursor-not-allowed"
                   placeholder="توضیحات پروژه یا پیامت رو اینجا بنویس..."
                 />
               </div>
@@ -147,7 +184,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative w-full sm:w-auto sm:min-w-[200px] mx-auto flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-base shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden">
+                className="group relative w-full sm:w-auto sm:min-w-[200px] mx-auto flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-base shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:scale-100 disabled:cursor-not-allowed transition-all duration-300 overflow-hidden">
                 <span className="relative z-10 flex items-center gap-2">
                   {isSubmitting ? (
                     <>
@@ -155,11 +192,16 @@ export default function Contact() {
                       در حال ارسال...
                     </>
                   ) : (
-                    <>ارسال پیام</>
+                    <>
+                      ارسال پیام
+                      <Send className="w-4 h-4 mr-1 transition-transform group-hover:translate-x-1" />
+                    </>
                   )}
                 </span>
                 {/* Button shine effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700" />
+                {!isSubmitting && (
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700" />
+                )}
               </button>
             </form>
 
@@ -202,6 +244,46 @@ export default function Contact() {
           معمولاً ظرف ۲۴ ساعت جواب میدم
         </p>
       </div>
+
+      {/* Status Modal */}
+      {modal.isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="relative w-full max-w-sm bg-card border border-border/80 rounded-2xl p-6 shadow-2xl text-center animate-in scale-in-95 duration-200">
+            {/* Close Button */}
+            <button
+              onClick={() => setModal({ ...modal, isOpen: false })}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors">
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Status Icon */}
+            <div className="flex justify-center mb-4">
+              {modal.isSuccess ? (
+                <CheckCircle2 className="w-14 h-14 text-emerald-500 animate-bounce" />
+              ) : (
+                <AlertCircle className="w-14 h-14 text-destructive" />
+              )}
+            </div>
+
+            {/* Status Title */}
+            <h3 className="text-lg font-bold text-foreground mb-2">
+              {modal.isSuccess ? "عملیات موفقیت‌آمیز" : "خطا در ارسال پیام"}
+            </h3>
+
+            {/* Status Message */}
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              {modal.message}
+            </p>
+
+            {/* Action Button */}
+            <button
+              onClick={() => setModal({ ...modal, isOpen: false })}
+              className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity">
+              متوجه شدم
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

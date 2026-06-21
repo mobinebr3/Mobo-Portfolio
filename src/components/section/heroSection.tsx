@@ -67,7 +67,7 @@ function DecorativeDots({ className = "" }: { className?: string }) {
 
 export default function HomeHero() {
   return (
-    <section className="relative w-full h-dvh grid place-items-center  bg-card selection:bg-blue-500/20 selection:text-blue-900">
+    <section className="relative w-full h-dvh grid place-items-center  bg-background">
       {/* Animated grid (same) */}{" "}
       {/* <div className="w-full absolute inset-0 z-10   h-full">
         <SoftAurora
