@@ -33,6 +33,7 @@ export default function Contact() {
 
       const data = await response.json();
 
+      
       if (response.ok) {
         setModal({
           isOpen: true,
