@@ -1,11 +1,24 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// مقداردهی اولیه Resend با کلید امنیتی
-const resend = new Resend(process.env.RESEND_API_KEY);
+// ۱. مجبور کردن Next.js به این که این مسیر را در زمان بیلد به صورت استاتیک رندر نکند
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
+    // ۲. بررسی وجود کلید API قبل از هر چیز (جلوگیری از کرش در زمان مقداردهی)
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("خطا: کلید API برای سرویس Resend تعریف نشده است.");
+      return NextResponse.json(
+        { error: "پیکربندی سرور ناقص است. لطفاً بعداً تلاش کنید." },
+        { status: 500 }
+      );
+    }
+
+    // ۳. مقداردهی ایمن داخل تابع
+    const resend = new Resend(apiKey);
+
     const { name, email, message } = await request.json();
 
     // اعتبار سنجی مقادیر ورودی
@@ -18,11 +31,10 @@ export async function POST(request: Request) {
 
     // ارسال ایمیل با استفاده از API سرویس Resend
     const { data, error } = await resend.emails.send({
-      // اگر دامنه اختصاصی ست نکرده‌اید، از ایمیل پیش‌فرض ریسند استفاده کنید
       from: "Contact Form <onboarding@resend.dev>", 
-      to: process.env.RECEIVER_EMAIL || "mobinebr3@gmail.com", // ایمیل مقصد (ایمیل خودتان)
+      to: process.env.RECEIVER_EMAIL || "mobinebr3@gmail.com", // ایمیل مقصد
       subject: `Form Contact: پیام جدید از طرف ${name}`,
-      replyTo: email, // باعث می‌شود وقتی در ایمیل روی Reply زدید، مستقیما به کاربر ایمیل ارسال شود
+      replyTo: email, 
       html: `
         <div dir="rtl" style="font-family: Tahoma, sans-serif; padding: 20px; line-height: 1.8; color: #333;">
           <h2 style="color: #2563eb; border-bottom: 1px solid #e5e7eb; padding-bottom: 10px;">پیام جدید از فرم تماس سایت</h2>
