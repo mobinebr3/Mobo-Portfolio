@@ -60,19 +60,19 @@ export default function Contact() {
     {
       name: "گیت‌هاب",
       icon: Github,
-      href: "https://github.com",
+      href: "https://github.com/mobinebr3",
       color: "hover:text-neutral-900 dark:hover:text-white",
     },
     {
       name: "لینکدین",
       icon: Linkedin,
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/mobin-ebrahimi-9a2a71330/",
       color: "hover:text-blue-600",
     },
     {
       name: "ایمیل",
       icon: Mail,
-      href: "mailto:hello@example.com",
+      href: "mailto:mobinebr3@gmail.com",
       color: "hover:text-rose-500",
     },
   ];

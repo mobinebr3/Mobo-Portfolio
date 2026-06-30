@@ -107,10 +107,8 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="space-y-2">
-            <p className="text-muted-foreground text-sm">
-              © {new Date().getFullYear()} تمامی حقوق محفوظ است.
-            </p>
+          <div className="space-y-2 mb-4">
+          
             <p className="text-xs text-muted-foreground/70">
    توسعه داده شده با عشق در هر پیکسل همراه با کمی قهوه
             </p>
