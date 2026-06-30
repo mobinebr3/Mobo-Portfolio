@@ -60,17 +60,17 @@ export default function AboutMe() {
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 lg:mt-15 items-center">
         <div className="lg:col-span-5 order-1 lg:order-1 relative flex justify-center items-center flex-col">
-          <motion.div
-            animate={floatingAnimation}
+          <div
+         
             className="relative z-10 w-full max-w-md mt-20">
             <div className="">
-              <div className="overflow-hidden   relative grid place-items-center">
-                <Image src="/myphoto.jpg" width={400} height={600} alt="Profile Image"   className=" h-100 w-72 md:h-150 md:w-96 rounded-2xl " />
+              <div className="   relative grid place-items-center">
+                <Image src="/myphoto.jpg" width={400} height={600} alt="Profile Image"   className=" w-100 h-130 rounded-3xl  lg:-mt-30 object-cover " />
               </div>
 
               {/* Badge وضعیت */}
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* --- بخش متن (سمت راست) --- */}
