@@ -7,6 +7,7 @@ import { PixelImage } from "../ui/pixel-image";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { Code2, Sparkles, Terminal } from "lucide-react";
 import { AnimatedShinyText } from "../ui/animated-shiny-text";
+import Image from "next/image";
 
 // انیمیشن‌های کانتینر اصلی
 const containerVariants: Variants = {
@@ -64,7 +65,7 @@ export default function AboutMe() {
             className="relative z-10 w-full max-w-md mt-20">
             <div className="">
               <div className="overflow-hidden   relative grid place-items-center">
-                <PixelImage src="/myphoto.jpg" grid="4x6" grayscaleAnimation />
+                <Image src="/myphoto.jpg" width={400} height={600} alt="Profile Image"   className=" h-100 w-72 md:h-150 md:w-96 rounded-2xl " />
               </div>
 
               {/* Badge وضعیت */}

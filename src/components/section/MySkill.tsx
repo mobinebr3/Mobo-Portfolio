@@ -70,7 +70,7 @@ export  function MySkill() {
     <section
       className="relative w-full min-h-screen bg-background  py-20 px-4 md:px-8 overflow-hidden "
       dir="rtl">
-      <div className="w-full h-full absolute inset-0 ">
+      {/* <div className="w-full h-full absolute inset-0 ">
         <div className="  flex h-[1990px] w-full flex-col items-center justify-center ">
           <AnimatedGridPattern
             numSquares={80}
@@ -86,7 +86,7 @@ export  function MySkill() {
             )}
           />
         </div>
-      </div>
+      </div> */}
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col gap-12">
         <div className="flex flex-col items-center text-center gap-6">
           <motion.div
