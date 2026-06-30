@@ -16,8 +16,7 @@ const allSkills = [
   { name: "Tailwind", Icon: RiTailwindCssFill, color: "text-cyan-500", bg: "bg-cyan-500/10" },
   { name: "Node.js", Icon: FaNodeJs, color: "text-green-600", bg: "bg-green-600/10" },
   
-  { name: "Vue.js", Icon: FaVuejs, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-  { name: "Nuxt", Icon: SiNuxtdotjs, color: "text-green-500", bg: "bg-green-500/10" },
+
   { name: "Redux", Icon: SiRedux, color: "text-purple-500", bg: "bg-purple-500/10" },
   { name: "Framer Motion", Icon: SiFramer, color: "text-pink-500", bg: "bg-pink-500/10" },
   { name: "NestJS", Icon: SiNestjs, color: "text-red-500", bg: "bg-red-500/10" },
@@ -26,7 +25,7 @@ const allSkills = [
   { name: "Express.js", Icon: SiExpress, color: "text-gray-500 dark:text-gray-300", bg: "bg-gray-500/10" },
   { name: "Prisma", Icon: SiPrisma, color: "text-teal-600 dark:text-teal-400", bg: "bg-teal-500/10" },
   { name: "PostgreSQL", Icon: SiPostgresql, color: "text-blue-400", bg: "bg-blue-400/10" },
-  { name: "MongoDB", Icon: SiMongodb, color: "text-green-500", bg: "bg-green-500/10" },
+
   { name: "Redis", Icon: SiRedis, color: "text-red-600", bg: "bg-red-600/10" },
   
   // DevOps & Tools
