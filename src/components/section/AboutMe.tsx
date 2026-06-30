@@ -97,9 +97,9 @@ export default function AboutMe() {
               من به عنوان یک{" "}
               <Highlighter
                 action="underline"
-                iterations={5}
+                iterations={2}
                 color="#2b2f83"
-                animationDuration={10000}>
+                animationDuration={800}>
                 توسعه‌دهنده فرانت‌‌اند
               </Highlighter>{" "}
               تلاشم این است که پلی میان منطق بک‌اند و تجربه کاربر بسازم. درک من
@@ -114,9 +114,9 @@ export default function AboutMe() {
               شاید هویت حرفه‌ای من در سه کلمه خلاصه شود:{" "}
               <Highlighter
                 action="highlight"
-                iterations={3}
+                iterations={1}
                 color="#2b2f83"
-                animationDuration={8000}>
+                animationDuration={1000}>
                 <span className="text-primary-foreground">
                   {" "}
                   کنجکاوی، کمال‌گرایی و روحیه تسلیم‌ناپذیر.{" "}
@@ -136,9 +136,9 @@ export default function AboutMe() {
               است. باور دارم تفاوت یک محصول معمولی با یک محصول عالی، در همان{" "}
               <Highlighter
                 action="box"
-                iterations={3}
+                iterations={2}
                 color="#2b2f83"
-                animationDuration={12000}>
+                animationDuration={1200}>
                 جزئیاتی
               </Highlighter>{" "}
               نهفته است که معمولاً نادیده گرفته می‌شوند. هدف من همیشه ایجاد

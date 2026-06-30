@@ -49,11 +49,7 @@ export function Loader({ onComplete }: LoaderProps) {
             inView={true}>
             <h1
               className="text-[clamp(3.5rem,12vw,10rem)] font-light  text-primary tracking-[-0.03em]  leading-[0.95] select-none"
-              style={{
-                fontFamily:
-                  ' -apple-system, BlinkMacSystemFont, "Helvetica Now", "Helvetica Neue", sans-serif',
-                fontWeight: 300,
-              }}>
+         >
               Mobin Ebrahimi
             </h1>
           </BlurFade>

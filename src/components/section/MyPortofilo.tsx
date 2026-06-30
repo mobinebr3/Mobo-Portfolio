@@ -79,7 +79,38 @@ const iconMap: Record<string, any> = {
   rocket: Rocket,
   building: Building2,
 };
+import React from "react";
 
+import { clsx } from "clsx";
+
+interface CategoryButtonProps {
+  cat: { id: string; label: string; icon: any };
+  isActive: boolean;
+  onClick: (id: string) => void;
+}
+
+const CategoryButton = React.memo(
+  ({ cat, isActive, onClick }: CategoryButtonProps) => {
+    const Icon = cat.icon;
+
+    return (
+      <button
+        key={cat.id}
+        onClick={() => onClick(cat.id)}
+        className={clsx(
+          "inline-flex items-center gap-2 rounded-2xl border-t border-b-[0.2px] px-4 py-2.5 text-sm font-semibold transition-all",
+          isActive
+            ? "bg-slate-900 text-white shadow-lg dark:bg-white dark:text-slate-900"
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10",
+        )}>
+        <Icon className="h-4 w-4" />
+        {cat.label}
+      </button>
+    );
+  },
+);
+
+CategoryButton.displayName = "CategoryButton";
 export function PortfolioSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -137,7 +168,9 @@ export function PortfolioSection() {
       return matchesCategory && matchesSearch;
     });
   }, [projects, activeCategory, search]);
-
+  const handleCategoryClick = React.useCallback((id: string) => {
+    setActiveCategory(id);
+  }, []);
   return (
     <section
       dir="rtl"
@@ -152,6 +185,7 @@ export function PortfolioSection() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
             className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-violet-500/15 bg-violet-500/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-300">
             <Sparkles className="h-4 w-4" />
@@ -161,6 +195,7 @@ export function PortfolioSection() {
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.05 }}
             className="text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-7xl">
             پروژه‌هایی که با{" "}
@@ -173,6 +208,7 @@ export function PortfolioSection() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-slate-600 dark:text-slate-400 sm:text-base">
             مجموعه‌ای از پروژه‌های واقعی با تمرکز روی فرانت‌اند، تجربه کاربری،
@@ -182,25 +218,14 @@ export function PortfolioSection() {
 
         <div className="mb-8 flex flex-col gap-4 rounded-3xl bg-background/50 p-4  backdrop-blur border-t border-b-[0.5px] md:flex-row md:items-center md:justify-between md:p-5">
           <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => {
-              const Icon = cat.icon;
-              const active = activeCategory === cat.id;
-
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={[
-                    "inline-flex items-center gap-2 rounded-2xl border-t border-b-[0.2px] px-4 py-2.5 text-sm font-semibold transition-all",
-                    active
-                      ? "bg-slate-900 text-white shadow-lg dark:bg-white dark:text-slate-900"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10",
-                  ].join(" ")}>
-                  <Icon className="h-4 w-4" />
-                  {cat.label}
-                </button>
-              );
-            })}
+            {CATEGORIES.map((cat) => (
+              <CategoryButton
+                key={cat.id}
+                cat={cat}
+                isActive={activeCategory === cat.id}
+                onClick={handleCategoryClick}
+              />
+            ))}
           </div>
 
           <label className="flex w-full max-w-sm items-center gap-3 rounded-2xl border-l border-t-[0.2px] border-slate-200 bg-slate-50 px-4 py-3 text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 md:w-auto">
