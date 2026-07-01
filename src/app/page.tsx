@@ -18,7 +18,9 @@ function Home() {
   return (
     <div className=" overflow-hidden rounded-3xl  w-[98%]  mx-auto  mt-2 -4 bg-black">
       <div className="  ">
-        <div className="max-h-[97dvh]   overflow-y-scroll overflow-x-hidden  scrollbar-hide bg-card!">
+        <div
+          id="page-scroll-container"
+          className="max-h-[97dvh]   overflow-y-scroll overflow-x-hidden  scrollbar-hide bg-card!">
           <AnimatePresence mode="wait">
             {loading ? (
               <motion.div

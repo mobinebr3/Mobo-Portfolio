@@ -66,7 +66,18 @@ const DATA = {
 
 export function NavBar() {
   const scrollToTop = () => {
+    if (typeof window === "undefined") return;
+
+    const scrollContainer = document.getElementById("page-scroll-container");
+
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

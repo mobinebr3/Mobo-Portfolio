@@ -65,7 +65,7 @@ export default function AboutMe() {
             className="relative z-10 w-full max-w-md mt-20">
             <div className="">
               <div className="   relative grid place-items-center">
-                <Image src="/myphoto.jpg" width={400} height={600} alt="Profile Image"   className=" w-100 h-130 rounded-3xl  lg:-mt-30 object-cover " />
+                <Image src="/myphoto.jpg" width={400} height={600} alt="Profile Image"   className=" w-100 h-130 rounded-3xl  lg:-mt-30 object-cover  max-sm:w-80 max-sm:h-105 max-sm:rounded-4xl " />
               </div>
 
               {/* Badge وضعیت */}
@@ -116,7 +116,7 @@ export default function AboutMe() {
               <Highlighter
                 action="highlight"
                 iterations={1}
-                color="#2b2f83"
+                color="#2d5bff"
                 animationDuration={1000}>
                 <span className="text-primary-foreground">
                   {" "}
@@ -138,7 +138,7 @@ export default function AboutMe() {
               <Highlighter
                 action="box"
                 iterations={2}
-                color="#2b2f83"
+                color="#2d5bff"
                 animationDuration={1200}>
                 جزئیاتی
               </Highlighter>{" "}

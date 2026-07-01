@@ -71,9 +71,9 @@ export async function GET() {
       link: "https://ballut.app",
       coverImage: "/projects/ballut/cover.png",
       images: [
-        "/projects/ballut/1.jpg",
-        "/projects/ballut/2.jpg",
-        "/projects/ballut/3.jpg",
+        "/projects/ballut/1.png",
+        "/projects/ballut/2.png",
+        "/projects/ballut/3.png",
       ],
       gradient: "from-sky-500 via-blue-600 to-indigo-700",
       accentColor: "sky",

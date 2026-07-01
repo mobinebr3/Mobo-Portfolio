@@ -1,17 +1,6 @@
 "use client";
 
-
-import {
-  Code2,
-
-  Layers,
-
-  Server,
-
-  Sparkles,
-  Wand2,
-
-} from "lucide-react";
+import { Code2, Layers, Server, Sparkles, Wand2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { BentoCard as Card } from "../ui/bento-grid";
@@ -22,50 +11,47 @@ import { BackendVisual } from "./skillGridSections/BackendVisual";
 import { UiUxVisual } from "./skillGridSections/UiUxVisual";
 import { AnimatedGridPattern } from "../ui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
+import { AnimatedShinyText } from "../ui/animated-shiny-text";
 
 const features = [
   {
     className: "md:col-span-2  border border-border/50 ",
     name: "معماری فرانت‌اند مدرن",
     description:
-      "توسعه وب‌اپلیکیشن‌های پیشرفته با Next.js و React. تمرکز روی Performance، سئو تکنیکال (SSR/SSG)، ساختار مقیاس‌پذیر و کدنویسی تمیز با TypeScript.",
+      "ساخت وب‌اپلیکیشن‌های سریع، قابل‌اعتماد و بهینه با Next.js و React؛ با تمرکز بر عملکرد، سئو، معماری مقیاس‌پذیر و کدنویسی تمیز با TypeScript.",
     Icon: Code2,
     background: <FrontendVisual />,
-    // بخش CTA بدون لینک
-    cta: "توسعه طبق استانداردهای روز دنیا",
+    cta: "راه‌حل‌های مدرن و آماده‌ی رشد",
   },
   {
-    name: "جادوی انیمیشن و UI/UX",
+    name: "تجربه کاربری جذاب و تعاملی",
     Icon: Wand2,
     description:
-      "پیاده‌سازی دقیق طرح‌های Figma به کد. خلق انیمیشن‌های نرم و تعاملی با استفاده از Framer Motion، GSAP و Anime.js برای خیره کردن کاربران.",
+      "تحویل طراحی‌های دقیق و روان از Figma به کد، همراه با انیمیشن‌های ظریف و تعامل‌های حرفه‌ای برای ایجاد تجربه‌ای ماندگار.",
     className: "md:col-span-1 border border-border/50 ",
     background: <UiUxVisual />,
-    // بخش CTA بدون لینک
-    cta: "خلق تجربه‌های بصری تعاملی",
+    cta: "UI/UX شفاف، جذاب و حرفه‌ای",
   },
   {
     className: "md:col-span-1  border border-border/50 ",
-    name: "توسعه‌دهنده بک‌اند (فول‌استک)",
+    name: "توسعه بک‌اند قوی و قابل اعتماد",
     description:
-      "من فقط فرانت‌اند کار نمی‌کنم! تسلط به معماری بک‌اند با Node.js، طراحی دیتابیس، ساخت RESTful API و مدیریت ارتباطات Real-time بین کلاینت و سرور.",
+      "ساخت APIهای امن و مقیاس‌پذیر با Node.js، طراحی دیتابیس حرفه‌ای و مدیریت ارتباطات real-time برای پایداری و سرعت در محصول.",
     Icon: Server,
     background: <BackendVisual />,
-    // بخش CTA بدون لینک
-    cta: "پایداری و امنیت در سمت سرور",
+    cta: "عملکرد پایدار و ساختار مطمئن",
   },
   {
     className: "md:col-span-2 border border-border/50  ",
-    name: "اکوسیستم و ابزارهای حرفه‌ای",
+    name: "ابزارها و اکوسیستم حرفه‌ای",
     description:
-      "تسلط کامل بر ابزارهای روز دنیا از سیستم‌های ورژن کنترل (Git) و مدیریت پکیج‌ها تا کانتینرسازی (Docker) برای افزایش سرعت توسعه، دیباگینگ و کیفیت نهایی محصول.",
+      "استفاده از بهترین ابزارهای توسعه مثل Git، Docker و مدیریت پکیج‌ها برای افزایش سرعت، کیفیت و همکاری در پروژه‌ها.",
     Icon: Layers,
     background: <Marquee3D />,
-    // بخش CTA بدون لینک
-    cta: "مدیریت و دپلو‌ی پکیج‌های مدرن",
+    cta: "توسعه سریع‌تر، دقیق‌تر و حرفه‌ای‌تر",
   },
 ];
-export  function MySkill() {
+export function MySkill() {
   return (
     <section
       className="relative w-full min-h-screen bg-background  py-20 px-4 md:px-8 overflow-hidden "
@@ -92,16 +78,16 @@ export  function MySkill() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-blue-600 dark:text-blue-400 text-sm font-medium backdrop-blur-md">
-            <Sparkles className="w-4 h-4" />
-            تخصص‌ها و مهارت‌های من
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full">
+            <AnimatedShinyText className="inline-flex items-center  text-md justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">    تخصص‌ها و مهارت‌های من</AnimatedShinyText>
+        
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-600 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 tracking-tight">
-            تسلط کامل از <br className="md:hidden" />
+            از ایده تا اجرا؛ از <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400">
               فرانت‌اند
             </span>{" "}
